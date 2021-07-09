@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+}
+/*로고*/
+header {
+    margin-top: 0px;
+}
+/*배너*/
+.section {
+    margin-top: 50px;
+}
+/*배너슬라이드로*/
+.section input[id*="slide"] {
+    display: none;
+}
+/*배너크기, 한가지 슬라이드만 보이게 hidden*/
+.section .slidewrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/*배너 줄바꿈 없앰(?)*/
+.section .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+}
+/*배너 애니메이션 빠르기가 transirion, 세로정렬함*/
+.section .slidelist > li {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .5s;
+}
+/*배너 안쪽 컨텐츠 담을 수 있게하는 거라함! 양옆이동하는 labeel태그 땜에 position 넣은 것*/
+.section .slidelist > li > a {
+    display: block;
+    position: relative;
+}
+/*배너 이미지 반응형으로 쓸 수 있도록함*/
+.section .slidelist > li > a img {
+    width: 100%;
+}
+/*배너 양옆으로 넘기는 것*/
+.section .slidelist label {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px;
+    cursor: pointer;
+}
+/*양 옆으로 넘길때 원래 화살표 넣어서 넘길 수 있게 하려했는데 화살표가 뜨지 않습니다...ㅜ*/
+.section .slidelist .left {
+    left: 30px;
+    background: url( 'user/img/left.png' ) center center / 100% no-repeat;
+}
+
+.section .slidelist .right {
+    right: 30px;
+    background: url( 'user/img/right.png' ) center center / 100% no-repeat;
+}
+/*배너 순서대로 넘어갈 수 있도록함*/
+.section [id="slide01"]:checked ~ .slidewrap .slidelist > li {transform: translateX(0%);}
+.section [id="slide02"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-100%);}
+.section [id="slide03"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-200%);}
+
+/*p문*/
+.p {
+    margin: 20px 0px;
+}
+/*카드 박스형태로....(밑에 두 부분은 잘 모르겠습니다..ㅠ)*/
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+/*카드이미지 모든 블럭을 감싸는 컨테이너*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/*description블럭 정렬*/
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/*카드이미지에서 이미지*/
+.component img {
+    max-width: 100%;
+    display: block;
+}
+/*카드에서 설명글 & 카드 색깔*/
+.component .description {
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background-color: #ece5e1;
+}
+/*카드에서 게시글 제목 */
+.description h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    font-weight: 700;
+}
+/*MORE 버튼*/
+.description .button {
+    display: block;
+    text-decoration: none;
+    background-color: #d6002e;
+    padding: 0.6rem 0.2rem;
+    margin-top: 1rem;
+    color: white;
+}
+/*밑에 두 미디어는 미디어쿼리를 사용해서 responsive디자인을 설정했다고 한다..!*/
+@media (min-width: 480px) {
+    .component {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+@media (min-width: 768px) {
+    .component {
+        flex: 0 0 calc(33.3% - 1rem);
+    }
+}

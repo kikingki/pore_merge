@@ -1,0 +1,91 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'user/css/main.css' %}">
+
+<div class="section">
+    <input type="radio" name="slide" id="slide01" checked>
+    <input type="radio" name="slide" id="slide02">
+    <input type="radio" name="slide" id="slide03">
+
+    <div class="slidewrap">
+        <ul class="slidelist">
+            <li>
+                <a>
+                    <label for="slide03" class="left"></label>
+                    <img src="{% static 'user/img/test01.jpg' %}" width="20" height="200">
+                    <label for="slide02" class="right"></label>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <label for="slide01" class="left"></label>
+                    <img src="{% static 'user/img/test02.jpg' %}" width="250" height="200">
+                    <label for="slide03" class="right"></label>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <label for="slide02" class="left"></label>
+                    <img src="{% static 'user/img/test03.png' %}" width="200" height="200">
+                    <label for="slide01" class="right"></label>
+                </a>
+            </li>
+            <div class="slide-contel">
+                <div class="control01">
+                    <label for="slide03" class="left"></label>
+                    <label for="slide02" class="right"></label>
+                </div>
+                <div class="control02">
+                    <label for="slide01" class="left"></label>
+                    <label for="slide03" class="right"></label>
+                </div>
+                <div class="control03">
+                    <label for="slide02" class="left"></label>
+                    <label for="slide01" class="right"></label>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>
+
+<br>
+<br>
+<hr>
+
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+      포트폴리오 확인
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      {%for f in fields %}
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'pfshow' f.id %}">{{ f }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+
+<div class="container">
+    <div class="main-content">
+        {% for p in portfolios %}
+        <article class="component">
+            <div class="description">
+                <p>{{p.pf_content | safe}}</p>
+                <h3 style="height: 7px;">{{p.pf_title}}</h3>
+                <a  href="{% url 'pfdetail' p.id %}" class="button">MORE</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <link rel="stylesheet" type="text/css" href="{% static 'user/css/signup.css' %}">
+
+    <form method="POST" class="joinForm">
+        <h2>회원가입</h2>
+        
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <br>
+        <p style="color: red;"> * 전문가 기준: 포트폴리오 5개 이상 & 실무 경력 1년 or 실거래 3건 이상</p>
+        <p style="color: red;"> 위 조건을 만족할 시에만 전문가를 선택해 주세요!</p>
+        <input type="submit" class="btn" value="J O I N">
+    </form>
+</body>
+{% endblock %}

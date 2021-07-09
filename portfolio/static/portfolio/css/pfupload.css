@@ -1,0 +1,21 @@
+select {
+    margin-left: 2%;
+    width: 100px;
+    height: 35px;
+}
+form {
+    margin: 3vh auto;
+    margin-left: 25%;
+}
+textarea {
+    margin: 0 auto;
+}
+.up {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 2%;
+    background-color: white;
+}
+.button {
+    margin-left: 35%;
+}

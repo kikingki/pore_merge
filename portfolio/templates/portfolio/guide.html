@@ -1,0 +1,70 @@
+<!-- 이용가이드 -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <script>
+    function filter(){
+
+    var value, name, item, i;
+
+    value = document.getElementById("value").value.toUpperCase();
+    item = document.getElementsByClassName("content");
+
+    for(i=0;i<item.length;i++){
+        name = item[i].getElementsByClassName("name");
+    if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+        item[i].style.display = "";
+    }else{
+        item[i].style.display = "none";
+    }
+    }
+    }
+    </script>
+    <style>
+        .gi {
+            margin: 2% auto;
+            text-align: center;
+            width: 80%;
+            border:1px solid black;
+        }
+
+        .search p {
+            font-size: 25px;
+        }
+
+        .search input {
+            width: 25vw;
+            height: 3vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="gi">
+    <div class="search">
+        <h1>PO;RE 이용 가이드</h1>
+        <p style="color: #BE2834;">키워드검색: </p>
+        <input onkeyup="filter()" type="text" id="value" class="search_input" placeholder="검색어 입력">
+    </div>
+    <div class="content">
+        <h2 class="name">Q1. 평균가를 결제 해야만 볼 수 있나요?</h2>
+        <p>A. 아닙니다!<br>가격을 측정하기 어려운 아마추어 분들부터<br> 요즘 시세를 알고 싶은 전문가까지 모두가 무료로 알 수 있습니다! </p>
+    </div>
+
+    <div class="content">
+        <h2 class="name">Q2. 포트폴리오를 보고 맘에 들어 계약하려하는데 어떻게 결제하나요?</h2>
+        <p>A. 채팅으로 금액을 결정한 뒤, 판매자가 게시글을 올려주세요.<br>
+        그 게시글에 들어가면 결제창이 뜹니다!</p>
+    </div>
+
+    <div class="content">
+        <h2 class="name">Q3. 탈퇴 후 올린 자료를 복구할 수 있나요?</h2>
+        <p>A. 탈퇴와 동시에 삭제되기 때문에 복구는 불가능합니다.<br>
+        그러니 신중히 고민하신 후 선택해주세요.</p>
+    </div>
+    </div>
+</body>
+
+
+{% endblock %}

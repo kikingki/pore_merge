@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+    font-family: 'GongGothicMedium';
+}
+
+hr {
+    width: 80%;
+}
+
+.all{
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.co {
+    margin: 0 auto;
+    width: 45%;
+    max-width: 45%;
+    height: 350px;
+    max-height: 400px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.co img{
+    width: 250px;
+    max-width: 250px;
+    height: 200px;
+    max-height: 200px;
+    display: block;
+    margin : auto;
+}
+
+.co iframe {
+    max-width: 250px;
+    max-height: 200px;
+}
+.co p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 auto;
+}

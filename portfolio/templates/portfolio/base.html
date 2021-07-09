@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/static/portfolio/css/base.css">
+    <title>PO;RE</title>
+</head>
+<body>
+    <a href="{% url 'main' %}">
+        <img src="/static/portfolio/img/pore_logo.png" alt="logo" height="100px" style="display: block; margin: 0px auto; ">
+    </a>
+    <div class="dropmenu">
+        <ul>
+         <li class="menu"><a href="{% url 'pfupload' %}">포트폴리오 업로드</a>
+            <ul>
+             <li><a href="{% url 'guide' %}">이용 가이드</a></li>
+            </ul>
+        </li>
+         <li class="menu"><a href="#" id="current">포트폴리오 확인</a>
+          <ul>
+            {%for f in fields %}
+            <li><a href="{% url 'pfshow' f.id %}">{{f}}</a></li>
+            {% endfor %}
+            </ul>
+         </li>
+         <li class="menu"><a href="#">예술가 커뮤니티</a>
+            <ul>
+                <li><a href="{% url 'free' %}">자유 게시판</a></li>
+                <li><a href="{% url 'tip' %}">팁/정보 게시판</a></li>
+                <li><a href="#">글쓰기</a></li>
+               </ul>
+        </li>
+         <li class="menu"><a href="#">평균가 확인</a>
+            <!-- <ul>
+                <li><a href="#">menu1</a></li>
+                <li><a href="#">menu2</a></li>
+                <li><a href="#">menu3</a></li>
+               </ul> -->
+        </li>
+         <li class="menu"><a href="{% url 'mypage' %}">마이 페이지</a>
+            <!-- <ul>
+                <li><a href="#">menu1</a></li>
+                <li><a href="#">menu2</a></li>
+                <li><a href="#">menu3</a></li>
+               </ul> -->
+        </li>
+        {% if user.is_active %}
+            <li class="log"><a href="{% url 'logout' %}">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-closed" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2zm1 0v13h8V2H4z"/>
+                <path d="M7 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                <path fill-rule="evenodd" d="M1 15.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/></svg>
+                로그아웃</a></li>
+        {% else %}
+            <li class="log"><a href="{% url 'signup' %}">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                <path fill-rule="evenodd" d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/></svg>
+                회원가입</a></li>
+            <li class="log"><a href="{% url 'signin' %}">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-open" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1 15.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM11.5 2H11V1h.5A1.5 1.5 0 0 1 13 2.5V15h-1V2.5a.5.5 0 0 0-.5-.5z"/>
+                <path fill-rule="evenodd" d="M10.828.122A.5.5 0 0 1 11 .5V15h-1V1.077l-6 .857V15H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117z"/>
+                <path d="M8 9c0 .552.224 1 .5 1s.5-.448.5-1-.224-1-.5-1-.5.448-.5 1z"/></svg>
+                로그인</a></li>
+        {% endif %}
+        </ul>
+    </div>
+
+    
+    {% block content %}
+    {% endblock %}
+</body>
+
+<footer>
+    
+</footer>
+</html>

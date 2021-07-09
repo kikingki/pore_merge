@@ -1,0 +1,26 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/portfolio/css/withdraw.css">
+</head>
+<body>
+    <div class="warning">
+    <h1>사용하고 계신 아이디 {{ user.username }}는<br>
+        탈퇴할 경우 재사용 및 복구가 불가능합니다.</h1>
+    <p>탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하니 신중하게 선택하시기 바랍니다.<br>
+        <span style="color:red">회원정보 및 등록하신 포토폴리오 파일은 모두 삭제되며, 삭제된 데이터는 복구되지 않습니다.</span><br>
+        삭제되는 내용을 확인하시고 필요한 데이터는 미리 백업을 해주세요.</p>
+    
+    <div class="yes">
+        <h3>네</h3>
+    </div>
+
+    <div class="no">
+        <h3>아니오</h3>
+    </div>
+
+    </div>
+</body>
+{% endblock %}

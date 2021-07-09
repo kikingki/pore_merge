@@ -1,0 +1,17 @@
+<!-- 포트폴리오 업로드 -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/pfupload.css' %}">
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <div class="button">
+        <input class="up" type="submit" value="제출하기">
+    </div>
+</form>
+{% endblock %}

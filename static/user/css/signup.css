@@ -1,0 +1,109 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    @font-face {
+        font-family: 'GongGothicMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+}
+
+/*바탕색*/
+
+body {
+    background-color: white;
+}
+/*회원가입 폼*/
+.joinForm {
+    position: absolute;
+    margin-top: 300px;
+    width: 500px;
+    height: 900px;
+    padding: 30px, 20px;
+    background-color: #ece5e1;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+}
+/*회원가입이라 써져있는 곳*/
+.joinForm h2 {
+    text-align: center;
+    margin: 30px;
+}
+/*정보 입력받는 곳 (아이디..비번)*/
+.textForm {
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+}
+/*아이디(적을때)*/
+.id {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+/*비번(적을때)*/
+.pw {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+/*이름(적을때)*/
+.name {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+/*닉네임(적을때)*/
+.nickname {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+/*join버튼*/
+.btn {
+    position:relative;
+    bottom: 0;
+    top: 100px;
+    margin-top: 50px;
+    left: 40%;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+    width: 80%;
+    height: 40px;
+    background-color: #d6002e;
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline;
+}
+/*버튼에 마우스 대면 반응(?)*/
+.btn:hover {
+    background-position: right;
+}
+

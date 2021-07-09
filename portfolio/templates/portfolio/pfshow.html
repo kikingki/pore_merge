@@ -1,0 +1,23 @@
+<!-- 포트폴리오 분야별 확인 -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/portfolio/css/pfshow.css">
+
+<h1>{{ field }}</h1>
+<div class="all">
+    {% for p in portfolios %}
+    {% if p.f_id == field %}
+    <div class="co" style="border: 1px solid black;">
+        <br>
+        <a href="{% url 'pfdetail' p.id %}">{{p.pf_title}}</a><br>
+        닉네임:{{ p.user_id.nickname }}
+        <br>
+        {{p.pf_content | safe}}<br>
+        {{ p.pf_date }}
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- 포트폴리오 상세 -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>{{portfolio.pf_title}}</h1>
+<h4>{{ portfolio.user_id.nickname }}</h4>
+<p>{{portfolio.pf_content | safe}}</p>
+<p>{{ portfolio.pf_date }}</p>
+<hr>
+<a href="{% url 'pfedit' portfolio.id %}"> 수정</a>
+<a href="{% url 'delete' portfolio.id %}"> 삭제</a>
+{% endblock %}

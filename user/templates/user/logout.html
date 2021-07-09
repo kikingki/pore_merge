@@ -1,0 +1,6 @@
+{% extends 'user/main.html' %}
+
+{% block content %}
+    <a>로그아웃 되었습니다</a>
+    <form method="post" action="{% url 'main' %}"></form>
+{% endblock %}

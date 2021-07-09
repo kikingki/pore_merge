@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+    font-family: 'GongGothicMedium';
+}
+
+hr {
+    width: 80%;
+}
+
+.mypf {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; */
+}
+
+.pf {
+    margin: 0 auto;
+    width: 40%;
+    height: 300px;
+    max-height: 300px;
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.pf img{
+    width: 250px;
+    max-width: 250px;
+    height: 200px;
+    max-height: 200px;
+    display: block;
+    margin : auto;
+}
+
+.pf iframe {
+    max-width: 250px;
+    height: 200px;
+}

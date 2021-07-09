@@ -1,0 +1,89 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    @font-face {
+        font-family: 'GongGothicMedium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+}
+/*로그인 폼*/
+.loginForm {
+    position: absolute;
+    margin-top: 40px;
+    width: 300px;
+    height: 400px;
+    padding: 30px, 20px;
+    background-color: #ece5e1;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+    border-color: #d6002e;
+}
+/*login 써있는 곳*/
+.loginForm h2{
+    text-align: center;
+    margin: 30px;
+}
+/*아이디 받는 곳*/
+.idForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+}
+/*비번 받는 곳*/
+.passForm{
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+}
+/*아이디 쓸 때*/
+.id {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+/*비번 쓸 때*/
+.pw {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #636e72;
+    font-size: 16px;
+    height: 25px;
+    background: none;
+}
+/*로그인버튼*/
+.btn {
+    position: relative;
+    left: 30px;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+    width: 80%;
+    height: 40px;
+    background-color: #d6002e;
+    background-position: left;
+    background-size: 200%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline;
+}
+/*반응형 버튼*/
+.btn:hover {
+    background-position: right;
+}
+/*회원이 아니신가요?그부분*/
+.bottomText {
+    text-align: center;
+}
