@@ -13,9 +13,11 @@
         <span style="color:red">회원정보 및 등록하신 포토폴리오 파일은 모두 삭제되며, 삭제된 데이터는 복구되지 않습니다.</span><br>
         삭제되는 내용을 확인하시고 필요한 데이터는 미리 백업을 해주세요.</p>
     
+    <a href="{% url 'user_del' %}">
     <div class="yes">
         <h3>네</h3>
-    </div>
+    </div></a>
+    
 
     <a href="{% url 'mypage' %}">
     <div class="no">

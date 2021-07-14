@@ -1,9 +1,10 @@
+from os import error
 from django.db.models import fields
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 from .models import CustomUser, Portfolio, Field
-from .forms import PortfolioForm
+from .forms import PortfolioForm, CheckPasswordForm
 
 
 
@@ -67,6 +68,19 @@ def pfdetail(request, id):
     
 def withdraw(request):
     return render(request, 'portfolio/withdraw.html')
+
+def user_delete(request):
+    if request.method == 'POST':
+        password_form = CheckPasswordForm(request.user, request.POST)
+        
+        if password_form.is_valid():
+            request.user.delete()
+            return redirect('main')
+    else:
+        password_form = CheckPasswordForm(request.user)
+
+    return render(request, 'portfolio/user_del.html', {'password_form':password_form})
+
 
 def chat(request):
     return render(request, 'portfolio/chat.html')
