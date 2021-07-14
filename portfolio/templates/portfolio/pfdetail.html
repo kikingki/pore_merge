@@ -8,6 +8,10 @@
 <p>{{portfolio.pf_content | safe}}</p>
 <p>{{ portfolio.pf_date }}</p>
 <hr>
+
+<!-- 본인 포트폴리오만 수정, 삭제 띄움 -->
+{% if portfolio.user_id == user %}
 <a href="{% url 'pfedit' portfolio.id %}"> 수정</a>
 <a href="{% url 'delete' portfolio.id %}"> 삭제</a>
+{% endif %}
 {% endblock %}
