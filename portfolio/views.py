@@ -23,6 +23,12 @@ def mypage(request):
     user = request.user
     return render(request, 'portfolio/mypage.html', {'portfolios':portfolios})
 
+def userpage(request, id):
+        portfolios = Portfolio.objects.all()
+    # 현재 로그인한 유저
+        user = get_object_or_404(CustomUser, id=id)
+        return render(request, 'portfolio/userpage.html', {'portfolios':portfolios, 'user':user})
+
 def guide(request):
     return render(request, 'portfolio/guide.html')
 

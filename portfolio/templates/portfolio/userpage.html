@@ -3,15 +3,8 @@
 {% load static %}
 
 {% block content %}
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<link rel="stylesheet" type="text/css" href="/static/portfolio/css/mypage.css">
-<br>
-<i class="fas fa-file-upload"></i>
-<a href="{% url 'pfupload' %}">포트폴리오 업로드</a>&emsp;
-<i class="fas fa-sign-out-alt"></i>
-<a href="{% url 'withdraw' %}"> 회원 탈퇴</a>&emsp;
-<i class="fas fa-receipt"></i>
-<a href="{% url 'paylist' %}"> 거래 내역</a>&emsp;
+<i class="fas fa-comments"></i>
+<a href="{% url 'chat' %}" class="btn btn-primary">채팅하기</a>
 <hr>
 
 <h1>{{ user.nickname }}님의 게시물</h1>

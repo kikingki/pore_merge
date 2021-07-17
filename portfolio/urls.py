@@ -3,6 +3,7 @@ from portfolio import views
 
 urlpatterns = [
     path('', views.mypage, name='mypage'),
+    path('userpage/<int:id>/', views.userpage, name='userpage'),
     path('guide/', views.guide, name='guide'),
     path('pfupload/', views.pfupload, name='pfupload'),
     path('pfdetail/<int:id>/', views.pfdetail, name='pfdetail'),
