@@ -7,7 +7,18 @@
 <a href="{% url 'chat' %}" class="btn btn-primary">채팅하기</a>
 <hr>
 
+<!-- 프로필 이미지가 있으면 해당 이미지를 띄우고 없으면 기본이미지 띄움 -->
+{% if user.profile.profile_image %}
+    <img src="{{ user.profile.profile_image.url }}" width="200px" hegiht="200px">
+{% else %}
+    <img src="{% static 'portfolio/img/기본프로필.jpg' %}" width="200px" hegiht="200px">
+{% endif %}
+<!-- 프로필 정보란 -->
 <h1>{{ user.nickname }}님의 게시물</h1>
+<h2>이메일: {{ user.profile.email }}</h2>
+<h2>연락처: {{ user.profile.phone_number }}</h2>
+<h2>자기소개: {{ user.profile.introduce }}</h2>
+
 <div class="mypf">
     {% for p in portfolios %}
     {% if p.user_id == user %}
@@ -16,7 +27,6 @@
             <br>
             {{p.pf_content | safe}}<br>
             {{ p.pf_date }}
-            <!-- {{ p.user_id.nickname }} -->
         {% endif %}
     </div>
 </div>

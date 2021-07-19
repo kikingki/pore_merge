@@ -1,6 +1,6 @@
 from django import forms
 from django.db.models import fields
-from .models import Portfolio
+from .models import Portfolio, Profile
 
 from django_summernote.widgets import SummernoteWidget
 from django.contrib.auth.hashers import check_password
@@ -20,6 +20,11 @@ class PortfolioForm(forms.ModelForm):
             'pf_content': '내용',
             'pf_attach': '썸네일',
         }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_image', 'email', 'phone_number', 'introduce']
 
 
 class CheckPasswordForm(forms.Form):

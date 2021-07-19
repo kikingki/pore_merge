@@ -1,0 +1,10 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">추가</button>
+</form>
+{% endblock %}

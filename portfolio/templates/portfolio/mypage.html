@@ -14,16 +14,36 @@
 <a href="{% url 'paylist' %}"> 거래 내역</a>&emsp;
 <hr>
 
+<!-- 프로필 이미지가 있으면 해당 이미지를 띄우고 없으면 기본이미지 띄움 -->
+{% if user.profile.profile_image %}
+    <img src="{{ user.profile.profile_image.url }}" width="200px" hegiht="200px">
+{% else %}
+    <img src="{% static 'portfolio/img/기본프로필.jpg' %}" width="200px" hegiht="200px">
+{% endif %}
+<!-- 프로필 정보란 -->
 <h1>{{ user.nickname }}님의 게시물</h1>
+<h2>이메일: {{ user.profile.email }}</h2>
+<h2>연락처: {{ user.profile.phone_number }}</h2>
+<h2>자기소개: {{ user.profile.introduce }}</h2>
+
+<!-- 프로필이 있으면 profile_update 페이지로 이동 -->
+{% if user.profile %}
+    <a href="{% url 'profile_update' user.id %}">프로필 수정</a>
+<!-- 프로필이 없으면 profile_add 페이지로 이동해 프로필 추가 -->
+{% else %}
+    <a href="{% url 'profile_add' %}">프로필 업로드</a>
+{% endif %}
+
+
 <div class="mypf">
     {% for p in portfolios %}
+    <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->
     {% if p.user_id == user %}
     <div class="pf" style="border: 1px solid black;">
             <a href="{% url 'pfdetail' p.id %}">{{p.pf_title}}</a>
             <br>
             {{p.pf_content | safe}}<br>
             {{ p.pf_date }}
-            <!-- {{ p.user_id.nickname }} -->
         {% endif %}
     </div>
 </div>
