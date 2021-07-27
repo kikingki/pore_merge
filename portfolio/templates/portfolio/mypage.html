@@ -8,6 +8,8 @@
 <br>
 <i class="fas fa-file-upload"></i>
 <a href="{% url 'pfupload' %}">포트폴리오 업로드</a>&emsp;
+<i class="fas fa-file-upload"></i>
+<a href="{% url 'dealupload' %}">거래글 업로드</a>&emsp;
 <i class="fas fa-sign-out-alt"></i>
 <a href="{% url 'withdraw' %}"> 회원 탈퇴</a>&emsp;
 <i class="fas fa-receipt"></i>
@@ -35,6 +37,25 @@
 {% endif %}
 
 
+<!-- 거래글 -->
+<h3>거래글</h3>
+<div class="mypf">
+    {% for b in business %}
+    <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->
+    {% if b.u_id == user %}
+    <div class="pf" style="border: 1px solid black;">
+            <a href="{% url 'dealdetail' b.id %}">{{b.deal_title}}</a>
+            <br>
+            {{b.deal_content | safe}}<br>
+            <p>{{ deal.price }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+
+<!-- 포트폴리오 -->
+<h3>포트폴리오</h3>
 <div class="mypf">
     {% for p in portfolios %}
     <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->

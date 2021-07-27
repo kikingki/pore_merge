@@ -22,3 +22,22 @@ class Profile(models.Model):
     email = models.CharField(max_length=200, null=True, blank=True)
     phone_number = models.CharField(max_length=200, null=True, blank=True)
     introduce = models.TextField(null=True, blank=True)
+
+
+class Business(models.Model):
+    def __str__(self):
+        return self.deal_title
+        
+    deal_title = models.CharField(max_length=200)
+    deal_content = models.TextField()
+    deal_date = models.DateTimeField()
+    u_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='business', null=True)
+    price = models.CharField(max_length=200)
+    status = models.CharField(
+        max_length=9,
+        choices=(
+            ('ready', '미결제'),
+            ('paid', '결제완료'),
+        ),
+        default='ready',
+        db_index=True)

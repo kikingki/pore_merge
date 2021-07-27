@@ -1,0 +1,11 @@
+<h1>카카오 페이 결제</h1>
+<form action="{% url 'kakaoPayLogic' deal.id %}" method="post">
+    {% csrf_token %}
+    <div>
+        {{ deal.deal_title }}
+        {{ deal.price }}
+    </div>
+    <input type="submit" value="결제">
+</form>
+</body>
+</html>
