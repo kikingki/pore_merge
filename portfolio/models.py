@@ -9,7 +9,7 @@ class Portfolio(models.Model):
 
     pf_title = models.CharField(max_length=200)
     pf_content = models.TextField()
-    pf_attach = models.FileField(blank=True, upload_to="images/", null=True)    # 썸네일
+    pf_attach = models.ImageField(blank=True, upload_to="images/", null=True)    # 썸네일
     pf_date = models.DateTimeField()
 
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='portfolios', null=True)    # 글 작성자

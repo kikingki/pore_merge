@@ -28,9 +28,7 @@
     {% if b.u_id == user %}
     <div class="pf" style="border: 1px solid black;">
             <a href="{% url 'dealdetail' b.id %}">{{b.deal_title}}</a>
-            <br>
-            {{b.deal_content | safe}}<br>
-            <p>{{ deal.price }}</p>
+            <p>{{ b.price }}원</p>
         {% endif %}
     </div>
 </div>
@@ -45,7 +43,11 @@
     <div class="pf" style="border: 1px solid black;">
             <a href="{% url 'pfdetail' p.id %}">{{p.pf_title}}</a>
             <br>
-            {{p.pf_content | safe}}<br>
+            {% if p.pf_attach %}
+            <img src="{{ p.pf_attach.url }}" width="250" height="250" alt="포트폴리오 썸네일">
+            {% else %}
+            <img src="{% static 'portfolio/img/이미지없음.jpg' %}" width="200px" hegiht="200px">
+            {% endif %}
             {{ p.pf_date }}
         {% endif %}
     </div>

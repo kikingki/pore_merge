@@ -1,11 +1,10 @@
-from os import error
+from os import error, stat
 from django.db.models import fields
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 # 결제
 import requests
-import json
 
 from .models import CustomUser, Portfolio, Field, Business
 from .forms import PortfolioForm, CheckPasswordForm, ProfileForm, BusinessForm
@@ -90,7 +89,7 @@ def pfupload(request):
 def pfedit(request, id):
     pf = get_object_or_404(Portfolio, id=id)
     if request.method == 'POST':
-        form = PortfolioForm(request.POST, instance=pf)
+        form = PortfolioForm(request.POST, request.FILES, instance=pf)
         if form.is_valid():
             pf = form.save(commit=False)
             pf.pf_date = timezone.now()
@@ -130,8 +129,10 @@ def user_delete(request):
 def chat(request):
     return render(request, 'portfolio/chat.html')
 
+# 결제 내역
 def paylist(request):
-    return render(request, 'portfolio/paylist.html')
+    pay = Business.objects.filter(status = "paid")  # 결제 완료인 Business 모델만 가져옴.
+    return render(request, 'portfolio/paylist.html', {'pay':pay})
 
 
 # 게시글 업로드
@@ -194,7 +195,7 @@ def kakaoPayLogic(request, id):
         'item_name':deal.deal_title,
         'quantity':'1',
         'total_amount':deal.price,
-        'vat_amount':'200',
+        'vat_amount':'0',
         'tax_free_amount':'0',
         # 내 애플리케이션 -> 앱설정 / 플랫폼 - WEB 사이트 도메인에 등록된 정보만 가능합니다
         # * 등록 : http://IP:8000 

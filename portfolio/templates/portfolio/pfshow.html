@@ -14,7 +14,11 @@
         <a href="{% url 'pfdetail' p.id %}">{{p.pf_title}}</a><br>
         <a href="{% url 'userpage' p.user_id.id %}">닉네임:{{ p.user_id.nickname }}</a>
         <br>
-        {{p.pf_content | safe}}<br>
+        {% if p.pf_attach %}
+            <img src="{{ p.pf_attach.url }}" width="250" height="250" alt="포트폴리오 썸네일">
+        {% else %}
+        <img src="{% static 'portfolio/img/이미지없음.jpg' %}" width="200px" hegiht="200px">
+        {% endif %}
         {{ p.pf_date }}
         {% endif %}
     </div>

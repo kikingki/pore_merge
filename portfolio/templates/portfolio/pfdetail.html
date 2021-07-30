@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>{{portfolio.pf_title}}</h1>
-<h4>{{ portfolio.user_id.nickname }}</h4>
+<a href="{% url 'userpage' portfolio.user_id.id %}"><h4>{{ portfolio.user_id.nickname }}</h4></a>
 <p>{{portfolio.pf_content | safe}}</p>
 <p>{{ portfolio.pf_date }}</p>
 <hr>

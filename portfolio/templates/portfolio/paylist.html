@@ -1,1 +1,16 @@
 <!-- 결제 내역 -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>결제 내역</h1>
+{% for p in pay %}
+{% if p.u_id == user %}
+    <p>거래명: {{ p.deal_title }}</p>
+    <p>거래가: {{ p.price }}</p>
+    <p>결제일: {{ p.deal_date }}</p>
+    <hr>
+{% endif %}
+{% endfor %}
+{% endblock %}
