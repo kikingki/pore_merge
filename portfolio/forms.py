@@ -1,6 +1,7 @@
 from django import forms
 from django.db.models import fields
 from .models import Portfolio, Profile, Business
+from user.models import CustomUser
 
 from django_summernote.widgets import SummernoteWidget
 from django.contrib.auth.hashers import check_password
@@ -42,7 +43,24 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_image', 'email', 'phone_number', 'introduce']
+        labels = {
+            'profile_image': '프로필 이미지',
+            'email': '이메일',
+            'phone_number': '연락처',
+            'introduce': '자기소개',
 
+        }
+
+class InfoChangeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['nickname', 'account', 'cr_id', 'field_id']
+        labels = {
+            'nickname': '닉네임',
+            'account': '계좌번호',
+            'cr_id': '경력',
+            'field_id': '직업'
+        }
 
 class CheckPasswordForm(forms.Form):
     password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(

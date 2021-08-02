@@ -36,6 +36,16 @@
     <a href="{% url 'profile_add' %}">프로필 업로드</a>
 {% endif %}
 
+<!-- 회원 등급별 이미지 -->
+<h3>회원 등급</h3>
+{% if grade %}
+    <img src="{% static 'portfolio/img/two.png' %}" width="50px" hegiht="50px">
+{% elif top %}
+    <img src="{% static 'portfolio/img/three.png' %}" width="50px" hegiht="50px">
+{% else %}
+    <img src="{% static 'portfolio/img/one.png' %}" width="50px" hegiht="50px">
+    <p>아마추어의 경우 PO;RE 거래횟수가 3회 이상이 되면 전문가로 분류됩니다.</p>
+{% endif %}
 
 <!-- 거래글 -->
 <h3>거래글</h3>

@@ -19,6 +19,16 @@
 <h2>연락처: {{ user.profile.phone_number }}</h2>
 <h2>자기소개: {{ user.profile.introduce }}</h2>
 
+<!-- 회원 등급별 이미지 -->
+<h3>회원 등급</h3>
+{% if grade %}
+    <img src="{% static 'portfolio/img/two.png' %}" width="50px" hegiht="50px">
+{% elif top %}
+    <img src="{% static 'portfolio/img/three.png' %}" width="50px" hegiht="50px">
+{% else %}
+    <img src="{% static 'portfolio/img/one.png' %}" width="50px" hegiht="50px">
+{% endif %}
+
 
 <!-- 거래글 -->
 <h3>거래글</h3>

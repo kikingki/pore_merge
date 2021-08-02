@@ -6,8 +6,9 @@ from django.utils import timezone
 # 결제
 import requests
 
+from user.models import Career
 from .models import CustomUser, Portfolio, Field, Business
-from .forms import PortfolioForm, CheckPasswordForm, ProfileForm, BusinessForm
+from .forms import PortfolioForm, CheckPasswordForm, ProfileForm, BusinessForm, InfoChangeForm
 
 
 
@@ -25,7 +26,19 @@ def mypage(request):
     business  = Business.objects.all()
     # 현재 로그인한 유저
     user = request.user
-    return render(request, 'portfolio/mypage.html', {'portfolios':portfolios,'business':business})
+
+    # 등급 구현
+    pay = Business.objects.filter(status = "paid").filter(u_id = user)
+    grade = ""
+    top = ""
+    if pay.count() > 2 and pay.count() < 7:
+        grade = "2"
+        user.cr_id = Career.objects.get(user_ap = "전문가")
+        user.save()
+    elif pay.count() > 6:
+        grade = ""
+        top = "3"
+    return render(request, 'portfolio/mypage.html', {'portfolios':portfolios,'business':business, 'grade':grade, 'top':top})
 
 # 프로필 추가
 def profile_add(request):
@@ -47,14 +60,17 @@ def profile_update(request, id):
     profile = user.profile
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
+        info = InfoChangeForm(request.POST, instance=user)
+        if form.is_valid() and info.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            info.save()
             return redirect('mypage')
     else:
         form = ProfileForm(instance=profile)
-        return render(request, 'portfolio/profile_update.html', {'form':form})
+        info = InfoChangeForm(instance=user)
+        return render(request, 'portfolio/profile_update.html', {'form':form, 'info':info})
 
 
 def userpage(request, id):
@@ -62,7 +78,19 @@ def userpage(request, id):
         business  = Business.objects.all()
     # 해당 포트폴리오를 올린 유저 정보
         user = get_object_or_404(CustomUser, id=id)
-        return render(request, 'portfolio/userpage.html', {'portfolios':portfolios, 'user':user,'business':business})
+
+        # 등급 구현
+        pay = Business.objects.filter(status = "paid").filter(u_id = user)
+        grade = ""
+        top = ""
+        if pay.count() > 2 and pay.count() < 7:
+            grade = "2"
+            user.cr_id = Career.objects.get(user_ap = "전문가")
+            user.save()
+        elif pay.count() > 6:
+            grade = ""
+            top = "3"
+        return render(request, 'portfolio/userpage.html', {'portfolios':portfolios, 'user':user,'business':business, 'grade':grade, 'top':top})
 
 def guide(request):
     return render(request, 'portfolio/guide.html')
