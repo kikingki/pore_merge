@@ -2,6 +2,19 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="/static/portfolio/css/chat.css">
 
-<h1>채팅</h1>
+<br>
+<div class="chat">
+    <div class="balloon left">
+        <p>멋쟁이 사자</p>
+        <span>안녕하세요. 포폴 보고 연락드립니다.</span></div>
+    <!-- <ul>
+        <li>안녕하세요. 포폴 보고 연락드립니다.</li>
+    </ul> -->
+    <div class="reply">
+        <textarea placeholder="내용을 입력하세요."></textarea>
+        <button>전송</button>
+    </div>
+</div>
 {% endblock %}

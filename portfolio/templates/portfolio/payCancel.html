@@ -1,12 +1,32 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    h4 {
+        color: red;
+    }
+    .cancel {
+        margin-top: 8vh;
+        text-align: center;
+    }
+</style>
 <!DOCTYPE html>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
 <body>
-    <h4>결제 취소</h4>
-    <a href="{% url 'main' %}">HOME</a>
+    <div class="cancel">
+        <i class="far fa-sad-tear" style="font-size: 50px; color: blue;"></i>
+        <h4><b>결제 취소</b></h4>
+        <h5>다시 시도해주세요!</h5>
+        <br>
+        <i class="fas fa-home" style="font-size: 30px;"></i>
+        <a href="{% url 'main' %}">HOME으로 돌아가기</a>
+    </div>
 </body>
 </html>
+{% endblock %}

@@ -1,13 +1,30 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    h4 {
+        color: red;
+    }
+    .success {
+        text-align: center;
+        margin-top: 8vh;
+    }
+</style>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
-    <h2>결제 성공</h2>
-    {{ status }}
-    <a href="{% url 'main' %}">HOME</a>
+    <div class="success">
+        <i class="far fa-smile-wink" style="font-size: 50px; color: rgb(201, 66, 235);"></i>
+        <h4><b>결제 성공</b></h4>
+        <br>
+        <i class="fas fa-receipt" style="font-size: 30px;"></i>
+        <a href="{% url 'paylist' %}">결제내역 보러가기</a><br>
+        <br>
+        <i class="fas fa-home" style="font-size: 30px;"></i>
+        <a href="{% url 'main' %}">HOME으로 돌아가기</a>
+        <br>
+    </div>
 </body>
-</html>
+{% endblock %}

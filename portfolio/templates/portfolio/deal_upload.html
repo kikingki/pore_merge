@@ -3,14 +3,38 @@
 {% load static %}
 
 {% block content %}
+<head>
+    <style>
+form {
+    margin: 3vh auto;
+    margin-left: 25%;
+}
+textarea {
+    margin: 0 auto;
+}
+.up {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 2%;
+    background-color: white;
+}
+h4 {
+    text-align: center;
+}
+.button {
+    margin-left: 35%;
+}
+    </style>
+</head>
 <form method="POST">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
-    <h4>가격은 꼭 숫자로만 적어주세요. 예: 15만원 >> 150000</h4>
+    <br>
     <div class="button">
         <input class="up" type="submit" value="제출하기">
     </div>
 </form>
+<h4>가격은 꼭 숫자로만 적어주세요. 예: 15만원 >> 150000</h4>
 {% endblock %}

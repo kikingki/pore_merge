@@ -1,0 +1,27 @@
+form {
+    width: 30vw;
+    margin: 3vh auto;
+    font-size: 20px;
+}
+form p {
+    font-weight: bold;
+    text-align: left;
+}
+textarea {
+    margin: 0 auto;
+    resize:none;
+}
+input {
+    margin: auto;
+}
+/* 제출하기 버튼  */
+.add {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 2%;
+    background-color: white;
+}
+/* 버튼 가운데쯤으로 오게 */
+.button {
+    text-align: center;
+}

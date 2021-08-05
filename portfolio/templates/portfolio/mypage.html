@@ -1,81 +1,121 @@
-<!-- 마이페이지 -->
 {% extends 'portfolio/base.html' %}
 {% load static %}
 
 {% block content %}
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/static/portfolio/css/mypage.css">
 <br>
-<i class="fas fa-file-upload"></i>
-<a href="{% url 'pfupload' %}">포트폴리오 업로드</a>&emsp;
+<!-- <i class="fas fa-file-upload"></i>
+<a href="{% url 'pfupload' %}">포트폴리오 업로드</a>&emsp; -->
 <i class="fas fa-file-upload"></i>
 <a href="{% url 'dealupload' %}">거래글 업로드</a>&emsp;
 <i class="fas fa-sign-out-alt"></i>
 <a href="{% url 'withdraw' %}"> 회원 탈퇴</a>&emsp;
-<i class="fas fa-receipt"></i>
-<a href="{% url 'paylist' %}"> 거래 내역</a>&emsp;
 <hr>
 
-<!-- 프로필 이미지가 있으면 해당 이미지를 띄우고 없으면 기본이미지 띄움 -->
-{% if user.profile.profile_image %}
-    <img src="{{ user.profile.profile_image.url }}" width="200px" hegiht="200px">
-{% else %}
-    <img src="{% static 'portfolio/img/기본프로필.jpg' %}" width="200px" hegiht="200px">
-{% endif %}
-<!-- 프로필 정보란 -->
-<h1>{{ user.nickname }}님의 게시물</h1>
-<h2>이메일: {{ user.profile.email }}</h2>
-<h2>연락처: {{ user.profile.phone_number }}</h2>
-<h2>자기소개: {{ user.profile.introduce }}</h2>
-
-<!-- 프로필이 있으면 profile_update 페이지로 이동 -->
-{% if user.profile %}
-    <a href="{% url 'profile_update' user.id %}">프로필 수정</a>
-<!-- 프로필이 없으면 profile_add 페이지로 이동해 프로필 추가 -->
-{% else %}
-    <a href="{% url 'profile_add' %}">프로필 업로드</a>
-{% endif %}
-
 <!-- 회원 등급별 이미지 -->
-<h3>회원 등급</h3>
-{% if grade %}
-    <img src="{% static 'portfolio/img/two.png' %}" width="50px" hegiht="50px">
-{% elif top %}
-    <img src="{% static 'portfolio/img/three.png' %}" width="50px" hegiht="50px">
-{% else %}
-    <img src="{% static 'portfolio/img/one.png' %}" width="50px" hegiht="50px">
-    <p>아마추어의 경우 PO;RE 거래횟수가 3회 이상이 되면 전문가로 분류됩니다.</p>
-{% endif %}
+<!-- <div class="grade">
+    <h3>회원 등급</h3>
+    {% if grade %}
+        <img src="{% static 'portfolio/img/two.png' %}" width="50px" hegiht="50px">
+    {% elif top %}
+        <img src="{% static 'portfolio/img/three.png' %}" width="50px" hegiht="50px">
+    {% else %}
+        <img src="{% static 'portfolio/img/one.png' %}" width="50px" hegiht="50px">
+        <p>아마추어의 경우 PO;RE 거래횟수가 3회 이상이 되면 전문가로 분류됩니다.</p>
+    {% endif %}
+</div> -->
 
+<div class="profile">
+    <div class="set">
+        <br><br>
+        <!-- 프로필이 있으면 profile_update 페이지로 이동 -->
+        <i class="fas fa-user-cog fas-5xs" style="font-size: 50px;"></i>
+        {% if user.profile %}
+        <a href="{% url 'profile_update' user.id %}">
+            <br>프로필 수정<br></a>
+        <!-- 프로필이 없으면 profile_add 페이지로 이동해 프로필 추가 -->
+        {% else %}
+        <a href="{% url 'profile_add' %}">
+            <br>프로필 업로드<br></a>
+        {% endif %}
+        <br>
+        <i class="fas fa-receipt" style="font-size: 50px;"></i>
+        <a href="{% url 'paylist' %}">
+            <br>거래 내역</a>
+    </div>
+
+    <div class="proimg">
+        <!-- 프로필 이미지가 있으면 해당 이미지를 띄우고 없으면 기본이미지 띄움 -->
+        {% if user.profile.profile_image %}
+        <img src="{{ user.profile.profile_image.url }}">
+        {% else %}
+        <img src="{% static 'portfolio/img/기본프로필.jpg' %}">
+        {% endif %}
+    </div>
+    <div class="procon">
+        <!-- 프로필 정보란 -->
+        {% if grade %}
+            <img src="{% static 'portfolio/img/two.png' %}" width="50px" hegiht="50px">
+        {% elif top %}
+            <img src="{% static 'portfolio/img/three.png' %}" width="50px" hegiht="50px">
+        {% else %}
+            <img src="{% static 'portfolio/img/one.png' %}" width="50px" hegiht="50px">
+            <!-- <p>아마추어의 경우 PO;RE 거래횟수가 3회 이상이 되면 전문가로 분류됩니다.</p> -->
+        {% endif %}
+        <h1><b>{{ user.nickname }}</b></h1>
+        <h2>이메일: {{ user.profile.email }}</h2>
+        <h2>연락처: {{ user.profile.phone_number }}</h2>
+        <h2>자기소개: {{ user.profile.introduce }}</h2>
+    </div>
+<br>
+</div>
+<br>
 <!-- 거래글 -->
-<h3>거래글</h3>
+<h3 style="color: #D6002E;"><b>거래글</b></h3>
 <div class="mypf">
     {% for b in business %}
     <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->
     {% if b.u_id == user %}
-    <div class="pf" style="border: 1px solid black;">
-            <a href="{% url 'dealdetail' b.id %}">{{b.deal_title}}</a>
-            <p>{{ b.price }}원</p>
+    <div class="deal" style="border: 1px solid black;">
+        <br>
+        <a style="font-size: 25px;" href="{% url 'dealdetail' b.id %}">
+            {% if b.status == "ready" %}
+            [미결제]
+            {% elif b.status == "paid" %}
+            [결제 확인]
+            {% endif %}
+            <b>{{b.deal_title}}</b></a>
+        <p class="date">{{ b.deal_date }}</p>
+        <br>
+        <p>{{ deal.price }}</p>
         {% endif %}
     </div>
 </div>
 {% endfor %}
 
-
+<br>
+<hr>
 <!-- 포트폴리오 -->
-<h3>포트폴리오</h3>
+<h3 style="color: #D6002E;"><b>PORTFOLIO</b></h3>
 <div class="mypf">
+    <div>
     {% for p in portfolios %}
-    <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->
+     <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->
     <div class="pf" style="border: 1px solid black;">
-            <a href="{% url 'pfdetail' p.id %}">{{p.pf_title}}</a>
-            <br>
+        <br>
+        <a style="font-size: 25px;" href="{% url 'pfdetail' p.id %}"><b>{{p.pf_title}}</b></a>
+        <p>{{ p.pf_date }}</p>
+        <br>
+        <div class="word">
             {% if p.pf_attach %}
             <img src="{{ p.pf_attach.url }}" width="250" height="250" alt="포트폴리오 썸네일">
             {% else %}
             <img src="{% static 'portfolio/img/이미지없음.jpg' %}" width="200px" hegiht="200px">
             {% endif %}
-            {{ p.pf_date }}
+            </div>
+    </div>
     </div>
     {% endfor %}
 </div>

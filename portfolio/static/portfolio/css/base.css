@@ -4,11 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 
 a:link { color: black; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
 a:hover { color: black; text-decoration: underline;}
-    
+
 .dropmenu{
     border:none;
     border:0px;
@@ -106,3 +107,36 @@ a:hover { color: black; text-decoration: underline;}
     color:#D6002E;
     text-decoration:none;
 }
+
+footer {
+    font-family: 'GongGothicMedium';
+    margin-top: 150px;
+    background: #ECE5E1;
+}
+
+.navbar {
+    display:none;
+}
+
+@media screen and (max-width: 768px), screen and (max-width : 1350px) 
+ {
+    .navbar {
+        background: #ece0d9;
+        display:block;
+        text-align:left;
+        color: black;
+        font-family: 'GongGothicMedium';
+    }
+   .dropmenu {
+        display:none;
+   } 
+   .navbar-brand {
+       font-size: 25px;
+   }
+   .nav-item {
+       color: black;
+   }
+   ul li {
+       color: black;
+   }
+  }

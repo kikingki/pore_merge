@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+}
+
+form{
+    margin: 10vh auto;
+}
+
+.form-control {
+    width: 500px;
+    margin: auto;
+}

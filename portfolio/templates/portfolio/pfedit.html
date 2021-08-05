@@ -1,8 +1,17 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/portfolio/css/pfedit.css">
+
 <!-- 포트폴리오 수정 -->
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
-    <input type="submit" value="업로드">
+    <div class="button">
+        <input class="up" type="submit" value="업로드">
+    </div>
 </form>
+{% endblock %}

@@ -1,7 +1,40 @@
+<!-- 포트폴리오 업로드 -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <style>
+form {
+    margin: 3vh auto;
+    margin-left: 25%;
+}
+textarea {
+    margin: 0 auto;
+}
+.up {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 2%;
+    background-color: white;
+}
+h4 {
+    text-align: center;
+}
+.button {
+    margin-left: 35%;
+}
+    </style>
+</head>
 <form method="POST">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
-    <input type="submit" value="업로드">
+    <br>
+    <div class="button">
+        <input class="up" type="submit" value="제출하기">
+    </div>
 </form>
+<h4>결제가 완료 됐다면 상태를 <b style="color: red;">결제완료</b>로 변경해주세요!</h4>
+{% endblock %}

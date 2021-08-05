@@ -3,13 +3,27 @@
 {% load static %}
 
 {% block content %}
-<h1>{{portfolio.pf_title}}</h1>
-<a href="{% url 'userpage' portfolio.user_id.id %}"><h4>{{ portfolio.user_id.nickname }}</h4></a>
-<p>{{portfolio.pf_content | safe}}</p>
-<p>{{ portfolio.pf_date }}</p>
+<link rel="stylesheet" type="text/css" href="/static/portfolio/css/pfdetail.css">
+<div class="banner">
+    <span>
+        <a href="https://www.jungle.co.kr/contest/202892" target="_blank">
+        <img src="https://www.jungle.co.kr/image/49bbe24e47b4b669884d0d42" height="500px" width="300px" alt="for1">  </a>
+    </span>
+  </div>
+  <div class="banner2">
+    <span>
+        <a href="https://www.jungle.co.kr/contest/202892" target="_blank">
+        <img src="https://www.jungle.co.kr/image/4edb814148cf940d499513dd" height="500px" width="300px" alt="for1">  </a>
+    </span>
+  </div>
+<div class="detail">
+    <br>
+    <h1>{{portfolio.pf_title}}</h1>
+    <img src="/static/portfolio/img/pore_logo2.png" alt="logo" height="50px" style="vertical-align:middle;">
+    <span style="margin-top:20px;font-size:18px;"><a href="{% url 'userpage' portfolio.user_id.id %}"><b>{{portfolio.user_id.nickname }}</b></a> &emsp;&emsp;&emsp; {{ portfolio.pf_date }}</span>
+    <p>{{portfolio.pf_content | safe}}</p>
+</div>
 <hr>
-
-<!-- 본인 포트폴리오만 수정, 삭제 띄움 -->
 {% if portfolio.user_id == user %}
 <a href="{% url 'pfedit' portfolio.id %}"> 수정</a>
 <a href="{% url 'delete' portfolio.id %}"> 삭제</a>

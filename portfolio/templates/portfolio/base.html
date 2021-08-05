@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,25 +12,80 @@
     <title>PO;RE</title>
 </head>
 <body>
-    <a href="{% url 'main' %}">
+    <a class="nav_logo" href="{% url 'main' %}">
         <img src="/static/portfolio/img/pore_logo.png" alt="logo" height="100px" style="display: block; margin: 0px auto; ">
     </a>
+    <nav class="navbar navbar-expand-lg navbar-inverse bg-inverse">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'main' %}">PO;RE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar">menu</span>
+            </button>
+          <div class="collapse navbar-collapse text-black" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'guide' %}">이용 가이드</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'pfupload' %}">포트폴리오 업로드</a>
+              </li>
+              <li class="nav-item dropdown" style="margin-left: 1px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    포트폴리오 확인
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {%for f in fields %}
+                  <li><a class="dropdown-item" href="{% url 'pfshow' f.id %}">{{f}}</a></li>
+                  {% endfor %}
+                  </ul>
+              </li>
+              <li class="nav-item dropdown" style="margin-left: 1px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
+                    예술가 커뮤니티
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'free' %}">자유 게시판</a></li>
+                  <li><a class="dropdown-item" href="{% url 'tip' %}">팁/정보 게시판</a></li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">평균가 확인</a>
+              </li>
+              {% if user.is_active %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'mypage' %}">마이 페이지</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">로그아웃</a></li>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">회원가입</a></li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signin' %}">로그인</a></li>
+              </li>
+            {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>    
     <div class="dropmenu">
-        <ul>
+        <ul class="menu_ul">
          <li class="menu"><a href="{% url 'pfupload' %}">포트폴리오 업로드</a>
             <ul>
              <li><a href="{% url 'guide' %}">이용 가이드</a></li>
             </ul>
         </li>
          <li class="menu"><a href="#" id="current">포트폴리오 확인</a>
-          <ul>
+          <ul class="menu_ul">
             {%for f in fields %}
             <li><a href="{% url 'pfshow' f.id %}">{{f}}</a></li>
             {% endfor %}
             </ul>
          </li>
          <li class="menu"><a href="#">예술가 커뮤니티</a>
-            <ul>
+            <ul class="menu_ul">
                 <li><a href="{% url 'free' %}">자유 게시판</a></li>
                 <li><a href="{% url 'tip' %}">팁/정보 게시판</a></li>
                 <li><a href="#">글쓰기</a></li>
@@ -42,11 +99,6 @@
                </ul> -->
         </li>
          <li class="menu"><a href="{% url 'mypage' %}">마이 페이지</a>
-            <!-- <ul>
-                <li><a href="#">menu1</a></li>
-                <li><a href="#">menu2</a></li>
-                <li><a href="#">menu3</a></li>
-               </ul> -->
         </li>
         {% if user.is_active %}
             <li class="log"><a href="{% url 'logout' %}">
@@ -70,13 +122,22 @@
         {% endif %}
         </ul>
     </div>
-
-    
     {% block content %}
     {% endblock %}
-</body>
+    <a style="display:scroll;position:fixed;bottom:10px;right:10px;" href="#">
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="36" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+    </svg></a>
 
 <footer>
-    
+    <div style="text-align: center;">
+        <img src="/static/portfolio/img/pore_logo2.png" alt="logo" height="50px" style="vertical-align:middle;">
+          <span style="margin-top:20px;font-size:18px;" >Copyright © 2021 멋쟁이 사자처럼 All rights reserved.</span>
+          <span>Contact webmaster for more information.</span>
+          <a href="https://instagram.com/likelion_skhu?utm_medium=copy_link">
+            <i class="fab fa-instagram" style="font-size: 25px;"></i></a>
+        </div>
 </footer>
+
+</body>
 </html>

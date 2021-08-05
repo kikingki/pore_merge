@@ -2,10 +2,37 @@
 {% load static %}
 
 {% block content %}
+<style>
+    form {
+    width: 35vw;
+    margin: 3vh auto;
+    font-size: 20px;
+}
+form p {
+    font-weight: bold;
+
+}
+textarea {
+    margin: 0 auto;
+    resize:none;
+}
+input {
+    margin: auto;
+}
+/* 제출하기 버튼  */
+.add {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 2%;
+    background-color: white;
+    margin-left: 45%;
+}
+</style>
+
 <form method="POST"  enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }}<br>
     {{ info.as_p }}
-    <button type="submit">수정</button>
+    <button class="add" type="submit">수정</button>
 </form>
 {% endblock %}

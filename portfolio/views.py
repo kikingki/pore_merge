@@ -26,7 +26,7 @@ def mypage(request):
     # 현재 로그인한 유저
     user = request.user
     portfolios = Portfolio.objects.filter(user_id=user).order_by('-pf_date')
-    paginator = Paginator(portfolios, 4)
+    paginator = Paginator(portfolios, 6)
     page = request.GET.get('page')
     portfolios = paginator.get_page(page)
     business  = Business.objects.all()
@@ -81,7 +81,7 @@ def userpage(request, id):
         # 해당 포트폴리오를 올린 유저 정보
         user = get_object_or_404(CustomUser, id=id)
         portfolios = Portfolio.objects.filter(user_id=user).order_by('-pf_date')
-        paginator = Paginator(portfolios, 4)
+        paginator = Paginator(portfolios, 6)
         page = request.GET.get('page')
         portfolios = paginator.get_page(page)
         business  = Business.objects.all()

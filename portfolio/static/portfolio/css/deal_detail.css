@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+body {
+    text-align: center;
+    font-family: 'GongGothicMedium';
+}
+
+.all {
+   margin-left: 20%;
+   position: relative;
+}
+
+.content img {
+    max-width: 35vw;
+    height: 250px;
+}
+
+.content iframe {
+    width: 35vw;
+    height: 300px;
+} 
+
+.content {
+    width: 50%;
+    display: inline-block;
+    left: 200px;
+    right: 0;
+    word-break:break-all;
+}
+
+.text {
+    width: 50%;
+    height: 250px;
+    float: right;
+    text-align: left;
+}
+
+@media screen and (max-width: 768px), screen and (max-width : 1350px) 
+ {
+    .content p img {
+        max-width: 90%;
+        margin-right: 20px;
+        height: 300px;
+    }
+ }

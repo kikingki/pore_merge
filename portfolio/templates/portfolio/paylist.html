@@ -1,16 +1,33 @@
-<!-- 결제 내역 -->
 {% extends 'portfolio/base.html' %}
 {% load static %}
 
 {% block content %}
-
-<h1>결제 내역</h1>
-{% for p in pay %}
-{% if p.u_id == user %}
-    <p>거래명: {{ p.deal_title }}</p>
-    <p>거래가: {{ p.price }}</p>
-    <p>결제일: {{ p.deal_date }}</p>
-    <hr>
-{% endif %}
-{% endfor %}
+<link rel="stylesheet" type="text/css" href="/static/portfolio/css/paylist.css">
+<br>
+<h1>{{ user.nickname }}님의 결제내역</h1>
+<br>
+<div class="list">
+    <table>
+        <thead>
+            <tr>
+                <th>결제일</th>
+                <th>거래명</th>
+                <th>결제 수단</th>
+                <th>거래가</th>
+              </tr>
+        </thead>
+        <tbody>
+          {% for p in pay %}
+          {% if p.u_id == user %}
+            <tr>
+                <td>{{ p.deal_date }}</td>
+                <td>{{ p.deal_title }}</td>
+                <td>카카오페이</td>
+                <td>{{ p.price }}</td>
+              </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
 {% endblock %}

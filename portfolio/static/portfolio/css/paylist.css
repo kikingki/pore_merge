@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    width: 80%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  thead {
+    color: #C0333E;
+    font-size: 20px;
+  }
+
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }

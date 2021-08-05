@@ -2,25 +2,39 @@
 {% load static %}
 
 {% block content %}
-<h1>{{deal.deal_title}}</h1>
-<p>{{ deal.price }}</p>
-<p>{{deal.deal_content | safe}}</p>
-<p>{{ deal.deal_date }}</p>
-
-
-<!-- 입금된 것을 확인하고 예술가가 결제 상태 변경 -->
-{% if deal.status == "ready" %}
-<p>미결제</p>
-{% elif deal.status == "paid" %}
-<p>결제 완료</p>
-{% endif %}
+<link rel="stylesheet" type="text/css" href="/static/portfolio/css/deal_detail.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <hr>
+<div class="all">
+<div class="content">
+    <p>{{deal.deal_content | safe}}</p>
+</div>
+<div class="text">
+    <br>
+    <h2>
+    <!-- 입금된 것을 확인하고 예술가가 결제 상태 변경 -->
+        {% if deal.status == "ready" %}
+        [미결제]
+        {% elif deal.status == "paid" %}
+        [결제 확인]
+        {% endif %}{{deal.deal_title}}</h2>
+    <h1>{{ deal.price }}원</h1>
+    <i class="far fa-clock" style="font-size: 25px;"></i><span> {{ deal.deal_date }}</span>
+</div>
+</div>
 
+<br>
+<div style=" text-align: center;">
 <!-- 본인 포트폴리오만 수정, 삭제 띄움 -->
 {% if deal.u_id == user %}
-<a href="{% url 'dealedit' deal.id %}"> 수정</a>
-<a href="{% url 'dealdelete' deal.id %}"> 삭제</a>
+<a href="{% url 'dealedit' deal.id %}" style="font-size: 30px;"> 수정</a>&emsp;
+<a href="{% url 'dealdelete' deal.id %}" style="font-size: 30px;"> 삭제</a>
 {% else %}
-<a href="{% url 'kakaoPay' deal.id %}"> 결제</a>
+<i class="fas fa-money-bill-wave" style="font-size: 30px;"></i>
+<a href="{% url 'kakaoPay' deal.id %}" style="font-size: 30px;"> 결제</a>&emsp;
+<i class="far fa-comments" style="font-size: 30px;"></i>
+<a href="{% url 'chat' %}" style="font-size: 30px;">채팅</a>
 {% endif %}
+</div>
+<hr>
 {% endblock %}

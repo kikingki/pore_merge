@@ -1,11 +1,50 @@
-<h1>카카오 페이 결제</h1>
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <style>
+        @font-face {
+            font-family: 'GongGothicMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+        body {
+            text-align: center;
+            font-family: 'GongGothicMedium';
+        }
+        input {
+            background-color: yellow;
+            border:none;
+            border-right:0px; border-top:0px; 
+            width: 150px;
+            height: 40px;
+        }
+        form {
+            background-color: #fff;
+            border: 2px dashed #8c8b8b;
+            width: 60%;
+            margin: auto;
+            padding: 15px;
+        }
+        b {
+            color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h1>카카오 페이 결제</h1>
 <form action="{% url 'kakaoPayLogic' deal.id %}" method="post">
     {% csrf_token %}
     <div>
-        {{ deal.deal_title }}
-        {{ deal.price }}
+        <h2>결제 품목:{{ deal.deal_title }}</h2>
+        <h2>가격:<b>{{ deal.price }}</b></h2>
     </div>
     <input type="submit" value="결제">
 </form>
 </body>
-</html>
+{% endblock %}
