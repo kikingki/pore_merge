@@ -2,6 +2,7 @@ from os import error, stat
 from django.db.models import fields
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # 결제
 import requests
@@ -22,10 +23,13 @@ def mypage(request):
     if not request.user.is_active:
         return render(request, 'user/signin.html')
 
-    portfolios = Portfolio.objects.all()
-    business  = Business.objects.all()
     # 현재 로그인한 유저
     user = request.user
+    portfolios = Portfolio.objects.filter(user_id=user).order_by('-pf_date')
+    paginator = Paginator(portfolios, 4)
+    page = request.GET.get('page')
+    portfolios = paginator.get_page(page)
+    business  = Business.objects.all()
 
     # 등급 구현
     pay = Business.objects.filter(status = "paid").filter(u_id = user)
@@ -74,10 +78,13 @@ def profile_update(request, id):
 
 
 def userpage(request, id):
-        portfolios = Portfolio.objects.all()
-        business  = Business.objects.all()
-    # 해당 포트폴리오를 올린 유저 정보
+        # 해당 포트폴리오를 올린 유저 정보
         user = get_object_or_404(CustomUser, id=id)
+        portfolios = Portfolio.objects.filter(user_id=user).order_by('-pf_date')
+        paginator = Paginator(portfolios, 4)
+        page = request.GET.get('page')
+        portfolios = paginator.get_page(page)
+        business  = Business.objects.all()
 
         # 등급 구현
         pay = Business.objects.filter(status = "paid").filter(u_id = user)
@@ -171,6 +178,7 @@ def dealupload(request):
             deal = form.save(commit=False)
             deal.deal_date = timezone.now()
             deal.u_id = request.user
+            deal.field_id = request.user.field_id
             deal.save()
             return redirect('mypage')
     else:

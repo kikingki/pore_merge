@@ -22,11 +22,11 @@
 <!-- 회원 등급별 이미지 -->
 <h3>회원 등급</h3>
 {% if grade %}
-    <img src="{% static 'portfolio/img/two.png' %}" width="50px" hegiht="50px">
+    <img src="{% static 'portfolio/img/chick.png' %}" width="50px" hegiht="50px">
 {% elif top %}
-    <img src="{% static 'portfolio/img/three.png' %}" width="50px" hegiht="50px">
+    <img src="{% static 'portfolio/img/bird.png' %}" width="50px" hegiht="50px">
 {% else %}
-    <img src="{% static 'portfolio/img/one.png' %}" width="50px" hegiht="50px">
+    <img src="{% static 'portfolio/img/egg.png' %}" width="50px" hegiht="50px">
 {% endif %}
 
 
@@ -61,6 +61,22 @@
             {{ p.pf_date }}
         {% endif %}
     </div>
-</div>
     {% endfor %}
+</div>
+    
+
+{% if portfolios.has_previous %}
+<a href="?page=1">처음</a>
+<a href="?page={{ portfolios.previous_page_number }}">이전</a>
+{% endif %}
+        
+<span>{{ portfolios.number }}</span>
+<span>of</span>
+<span>{{ portfolios.paginator.num_pages }}</span>
+        
+{% if portfolios.has_next %}
+<a href="?page={{ portfolios.next_page_number }}">다음</a>
+<a href="?page={{ portfolios.paginator.num_pages }}">마지막</a>
+{% endif %}
+
 {% endblock %}

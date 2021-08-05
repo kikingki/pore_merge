@@ -41,3 +41,4 @@ class Business(models.Model):
         ),
         default='ready',
         db_index=True)
+    field_id = models.ForeignKey(Field, on_delete=models.CASCADE, related_name='business', null=True)

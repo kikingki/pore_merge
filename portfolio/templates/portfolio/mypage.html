@@ -67,7 +67,6 @@
 <div class="mypf">
     {% for p in portfolios %}
     <!-- 포트폴리오의 user_id와 현재 로그인 유저가 동일한 것만 보여줌 -->
-    {% if p.user_id == user %}
     <div class="pf" style="border: 1px solid black;">
             <a href="{% url 'pfdetail' p.id %}">{{p.pf_title}}</a>
             <br>
@@ -77,8 +76,23 @@
             <img src="{% static 'portfolio/img/이미지없음.jpg' %}" width="200px" hegiht="200px">
             {% endif %}
             {{ p.pf_date }}
-        {% endif %}
     </div>
-</div>
     {% endfor %}
+</div>
+    
+
+{% if portfolios.has_previous %}
+<a href="?page=1">처음</a>
+<a href="?page={{ portfolios.previous_page_number }}">이전</a>
+{% endif %}
+    
+<span>{{ portfolios.number }}</span>
+<span>of</span>
+<span>{{ portfolios.paginator.num_pages }}</span>
+    
+{% if portfolios.has_next %}
+<a href="?page={{ portfolios.next_page_number }}">다음</a>
+<a href="?page={{ portfolios.paginator.num_pages }}">마지막</a>
+{% endif %}
+
 {% endblock %}
